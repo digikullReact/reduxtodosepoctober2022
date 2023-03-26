@@ -43,7 +43,7 @@ const Add = () => {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '55ch' },
+        '& > :not(style)': { m: 1, width: '65ch' },
       }}
       noValidate
       autoComplete="off"
