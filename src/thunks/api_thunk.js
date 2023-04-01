@@ -20,7 +20,8 @@ export const fetchPosts = createAsyncThunk(
 
   export const addPosts = createAsyncThunk(
     'addPosts',  // name of the operation 
-    async () => {
+    async (data) => {
+        debugger;
 
         const configAxios={
             "headers":{
@@ -28,7 +29,7 @@ export const fetchPosts = createAsyncThunk(
             }
         }
        // An async function return a promise
-        const res=await axios.get("http://rustycoder.live:8080/get/employee",configAxios);
+        const res=await axios.post("http://rustycoder.live:8080/add/tasks",data,configAxios);
         return res;
       
     }

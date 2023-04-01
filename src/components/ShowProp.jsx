@@ -9,6 +9,7 @@ import { deleteTodo,editTodo } from '../slices/todoslice';
 
 
 export default function ShowProp({state}) {
+  
 const dispatch=useDispatch();
 
     const columns = [

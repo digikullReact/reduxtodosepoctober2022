@@ -50,7 +50,7 @@ const todoSlice=createSlice({
 // if you want to use it you can keep it otherwise you can omit it
 
 builder.addCase(fetchPosts.pending,(state)=>{
-          
+        
 
 });
 
@@ -60,21 +60,21 @@ builder.addCase(fetchPosts.pending,(state)=>{
 
 builder.addCase(addPosts.fulfilled,(state,action)=>{
 
-
+  debugger;
 
 });
 
 builder.addCase(addPosts.rejected,(state,action)=>{
 
-
+  debugger;
 
 });
 
 // if you want to use it you can keep it otherwise you can omit it
 
-builder.addCase(addPosts.pending,(state)=>{
+builder.addCase(addPosts.pending,(state,action)=>{
         
-
+  debugger;
 });
 
   
