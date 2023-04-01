@@ -5,6 +5,7 @@ import {
 import App from "./App";
 import Add from "./components/Add";
 import Show from "./components/Show";
+import Api from "./components/Api";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     {
       path: "/show",
       element: <Show/>,
+    },
+    {
+      path: "/api",
+      element: <Api/>,
     }
   ]);
   

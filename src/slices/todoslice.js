@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchPosts,addPosts } from '../thunks/api_thunk';
 
 const initialState={
-    todos:[]
+    todos:[],
+    tasks:[]
 
 }
 const todoSlice=createSlice({
@@ -19,7 +21,7 @@ const todoSlice=createSlice({
 
     },
     editTodo:(state,action)=>{
-      debugger;
+      
 
       let filteredData=state.todos.filter(ele=>ele.id!=action.payload.id);
       state.todos=[...filteredData,action.payload];
@@ -27,7 +29,57 @@ const todoSlice=createSlice({
     }
 
 
-  }
+  },
+
+  // it will all async thunk operations here --->
+  extraReducers:(builder)=>{
+    // this call will happen automatically bythunk
+    builder.addCase(fetchPosts.fulfilled,(state,action)=>{
+      state.tasks=action.payload.data;
+
+     // debugger;
+
+  });
+
+  builder.addCase(fetchPosts.rejected,(state,action)=>{
+
+
+
+});
+
+// if you want to use it you can keep it otherwise you can omit it
+
+builder.addCase(fetchPosts.pending,(state)=>{
+          
+
+});
+
+
+// For Addposts
+
+
+builder.addCase(addPosts.fulfilled,(state,action)=>{
+
+
+
+});
+
+builder.addCase(addPosts.rejected,(state,action)=>{
+
+
+
+});
+
+// if you want to use it you can keep it otherwise you can omit it
+
+builder.addCase(addPosts.pending,(state)=>{
+        
+
+});
+
+  
+
+}
 
 
 
