@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { addPosts, fetchPosts } from '../thunks/api_thunk';
+import { addPosts, fetchPosts,deletePosts } from '../thunks/api_thunk'; // we will dispatch them in the same way we dispatched the reducer actions
 import ShowProp from "./ShowProp";
 import TextField from '@mui/material/TextField'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import dayjs from 'dayjs';
+import ShowPropApi from './ShowPropApi';
 
 
 const Api = () => {
@@ -38,6 +39,7 @@ const tasks=useSelector(function(globalState){
 console.log("tasks----",tasks);
 const [state,setState]=useState(0);
 const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
+const [deleted,setDeleted]=useState(false);
 
 
 const [task,setTask]=useState("");
@@ -56,11 +58,24 @@ const handleClick=()=>{
   dispatch(addPosts(payload));
 }
 
+const deleteDispatch=(id)=>{
+
+  dispatch(deletePosts(id)).then(res=>{
+    // console.log("Executed After the delete");
+    //dispatch(fetchPosts());
+    setDeleted(!deleted);
+
+   }).catch(err=>{
+
+   })
+
+}
+
 useEffect(()=>{  // this version of useEffect will be trigerred every time the state is changed
 
     dispatch(fetchPosts());
 
-},[])
+},[deleted])
 
   return (
     <div>
@@ -90,7 +105,7 @@ useEffect(()=>{  // this version of useEffect will be trigerred every time the s
     </LocalizationProvider>
       <Button onClick={handleClick} variant="contained" style={{marginTop:"20px"}}>Add ToDo</Button>
 
-      <ShowProp state={tasks}/>
+      <ShowPropApi state={tasks} deleteDispatch={deleteDispatch}/>
 
     </Box>
 

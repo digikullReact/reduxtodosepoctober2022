@@ -34,3 +34,19 @@ export const fetchPosts = createAsyncThunk(
       
     }
   )
+
+  export const deletePosts = createAsyncThunk(
+    'deletePosts',  // name of the operation 
+    async (data) => {
+        const headers = {
+            token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          };
+
+    
+     
+       let res=await axios.delete(`http://rustycoder.live:8080/remove-post/${data}`,{ data: { name: "tasks" },headers:headers });
+
+        return res;
+      
+    }
+  )

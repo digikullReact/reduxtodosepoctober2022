@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPosts,addPosts } from '../thunks/api_thunk';
+import { fetchPosts,addPosts, deletePosts } from '../thunks/api_thunk';
 
 const initialState={
     todos:[],
@@ -60,13 +60,11 @@ builder.addCase(fetchPosts.pending,(state)=>{
 
 builder.addCase(addPosts.fulfilled,(state,action)=>{
 
-  debugger;
 
 });
 
 builder.addCase(addPosts.rejected,(state,action)=>{
 
-  debugger;
 
 });
 
@@ -74,10 +72,29 @@ builder.addCase(addPosts.rejected,(state,action)=>{
 
 builder.addCase(addPosts.pending,(state,action)=>{
         
-  debugger;
 });
 
   
+// For delete posts
+
+
+builder.addCase(deletePosts.fulfilled,(state,action)=>{
+  // operation here --->
+
+
+
+});
+
+builder.addCase(deletePosts.rejected,(state,action)=>{
+
+
+});
+
+// if you want to use it you can keep it otherwise you can omit it
+
+builder.addCase(deletePosts.pending,(state,action)=>{
+        
+});
 
 }
 
