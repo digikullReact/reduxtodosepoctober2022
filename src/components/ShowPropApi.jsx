@@ -4,6 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import {useSelector,useDispatch} from 'react-redux';
 import { Button, Stack } from '@mui/material';
 import { deletePosts,fetchPosts } from '../thunks/api_thunk';
+import BasicModal from './Modal';
 //import { deleteTodo,editTodo } from '../slices/todoslice';
 
 
@@ -12,6 +13,16 @@ import { deletePosts,fetchPosts } from '../thunks/api_thunk';
 export default function ShowPropApi({state,deleteDispatch}) {
   
 const dispatch=useDispatch();
+const [editState,setEditState]=React.useState();
+
+const [open, setOpen] = React.useState(false);
+const handleOpen = () => setOpen(true);
+const handleClose = () => setOpen(false);
+
+const editData=(row)=>{
+  setOpen(true);
+ setEditState(row);
+}
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
@@ -53,8 +64,9 @@ const dispatch=useDispatch();
                 
                 const onClickEdit = (e) => {
                     const currentRow = params.row;
-                    console.log(currentRow);
-                    dispatch(editTodo(currentRow))
+                   // console.log(currentRow);
+                    editData(currentRow);
+                   // dispatch(editTodo(currentRow))
                     //return alert(JSON.stringify(currentRow, null, 4));
                     // dispatch the action here
                   };
@@ -88,6 +100,7 @@ const dispatch=useDispatch();
         checkboxSelection
         disableRowSelectionOnClick
       />
+      <BasicModal editState={editState} handleOpen={handleOpen} handleClose={handleClose} open={open}/>
     </Box>
   );
 }

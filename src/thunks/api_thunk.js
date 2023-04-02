@@ -21,7 +21,6 @@ export const fetchPosts = createAsyncThunk(
   export const addPosts = createAsyncThunk(
     'addPosts',  // name of the operation 
     async (data) => {
-        debugger;
 
         const configAxios={
             "headers":{
